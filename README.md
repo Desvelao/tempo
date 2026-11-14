@@ -89,14 +89,17 @@ Releases are published on the repository's Releases page (the link is in Setting
 APK (to install), the AAB, the R8 mapping file and a `SHA256SUMS` file with the SHA-256 of all of them.
 
 ```bash
-# Download the APK and the checksums (browser, or the GitHub CLI):
-gh release download v0.1.0 --repo <owner>/<repo> --pattern '*.apk' --pattern SHA256SUMS
+# Download the checksums, then the APK they list (the APK name ends with the commit hash):
+BASE=https://github.com/<owner>/<repo>/releases/download/v0.1.0
+curl -fLO "$BASE/SHA256SUMS"
+APK=$(awk '/\.apk$/ {print $2}' SHA256SUMS)
+curl -fLO "$BASE/$APK"          # or: wget "$BASE/$APK"
 
 # 1. Check the file was not corrupted or replaced:
 sha256sum --check --ignore-missing SHA256SUMS      # prints "<file>.apk: OK"
 
 # 2. Check who signed it (apksigner is in the Android SDK build-tools, or `docker compose run --rm dev`):
-apksigner verify --print-certs <file>.apk | grep 'SHA-256 digest'
+apksigner verify --print-certs "$APK" | grep 'SHA-256 digest'
 ```
 
 The release signing certificate's SHA-256 is
