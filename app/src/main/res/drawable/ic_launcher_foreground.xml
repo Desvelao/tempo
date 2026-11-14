@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <!-- Cadence ring: dark track, open lime arc, blue dot -->
+    <path
+        android:strokeColor="#FF2A3340" android:strokeWidth="8"
+        android:pathData="M54,32 a22,22 0 1 1 0,44 a22,22 0 1 1 0,-44" />
+    <path
+        android:strokeColor="#FFC6F432" android:strokeWidth="8" android:strokeLineCap="round"
+        android:pathData="M54,32 A22,22 0 1 1 32,54" />
+    <path android:fillColor="#FF7AA2FF" android:pathData="M54,48a6,6 0 1 0 0,12a6,6 0 1 0 0,-12z" />
+</vector>
