@@ -83,6 +83,29 @@ Because an rc/beta/alpha and its final share a code, Android will not update one
 Other runs (manual `workflow_dispatch`) use `github.run_number` as code and `<version>-dev+<sha>` as name, and
 only upload the files as a workflow artifact.
 
+## Download and verify
+
+Releases are published on the repository's Releases page (the link is in Settings > About). Each release has the
+APK (to install), the AAB, the R8 mapping file and a `SHA256SUMS` file with the SHA-256 of all of them.
+
+```bash
+# Download the APK and the checksums (browser, or the GitHub CLI):
+gh release download v0.1.0 --repo <owner>/<repo> --pattern '*.apk' --pattern SHA256SUMS
+
+# 1. Check the file was not corrupted or replaced:
+sha256sum --check --ignore-missing SHA256SUMS      # prints "<file>.apk: OK"
+
+# 2. Check who signed it (apksigner is in the Android SDK build-tools, or `docker compose run --rm dev`):
+apksigner verify --print-certs <file>.apk | grep 'SHA-256 digest'
+```
+
+The release signing certificate's SHA-256 is
+`39ab4d9a15cf306074cc15d65b2b382699ef63cdacc5906ccf3a0130b9f73b43`; the digest printed in step 2 must match it.
+Step 1 only proves the APK matches `SHA256SUMS` from the same release, so an attacker who can replace release
+files can replace both; step 2 is what proves the APK was signed with the project's key. Android also refuses to
+update an installed app with an APK signed by a different key. Uninstall a debug build before installing a release
+build, because their signatures differ.
+
 ## Design
 
 The UI follows the "Focus" direction: near-black surfaces, one lime accent, a blue highlight and large

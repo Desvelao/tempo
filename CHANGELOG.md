@@ -28,6 +28,7 @@ First release.
 - Get started introduction, an About dialog with the project link, and a cadence-ring launcher icon with a
   themed-icon version.
 - English and Spanish translations.
+- Each GitHub Release includes a `SHA256SUMS` file, and the README explains how to verify a download.
 - Fully offline: no internet permission, analytics or ads. Your results never leave the device.
 
 [Unreleased]: https://github.com/Desvelao/tempo/compare/v0.1.0...HEAD
