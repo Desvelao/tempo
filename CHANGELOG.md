@@ -7,7 +7,7 @@ workflow publishes the matching section as the GitHub Release notes.
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-11-14
+## [0.1.0] - 2026-11-18
 
 First release.
 
