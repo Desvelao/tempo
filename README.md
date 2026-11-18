@@ -41,7 +41,7 @@ then environment variable, then the tracked `app.properties`, then the default.
 |---|---|---|
 | `APP_NAME` | `Tempo` | `Trainer` |
 | `APP_ID` | `io.github.desvelao.tempo` | `app.example.trainer` |
-| `APP_URL` | `https://github.com/desvelao/tempo` (shown in Settings > About) | `https://example.com` |
+| `APP_URL` | `https://github.com/Desvelao/tempo` (shown in Settings > About) | `https://example.com` |
 | `APP_VERSION_NAME` / `APP_VERSION_CODE` | not set (release workflow) | `0.1.0` / `1` |
 
 ```bash
